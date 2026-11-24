@@ -82,5 +82,25 @@ namespace Map.Unity.EditorTests
             StringAssert.DoesNotContain("Noise.", renderer);
         }
 
+        [Test]
+        public void PixelDemoPalette_MapsEveryCanonicalBiomeToTheLegacyColor()
+        {
+            var palette = AssetDatabase.LoadAssetAtPath<BiomeTilePalette>(
+                "Assets/MapGeneratorDemo/BiomeTilePalette.asset");
+
+            Assert.That(palette, Is.Not.Null);
+            var colors = palette.Entries.ToDictionary(entry => entry.BiomeId, entry => entry.Color);
+            Assert.That(colors, Has.Count.EqualTo(10));
+            Assert.That(colors["Water"], Is.EqualTo(new Color(0.1f, 0.1f, 0.8f, 1f)));
+            Assert.That(colors["Deep Water"], Is.EqualTo(new Color(0f, 0f, 0.5f, 1f)));
+            Assert.That(colors["Sand"], Is.EqualTo(new Color(0.93f, 0.79f, 0.69f, 1f)));
+            Assert.That(colors["Grassland"], Is.EqualTo(new Color(0.5f, 0.8f, 0.2f, 1f)));
+            Assert.That(colors["Forest"], Is.EqualTo(new Color(0.1f, 0.5f, 0.1f, 1f)));
+            Assert.That(colors["Jungle"], Is.EqualTo(new Color(0f, 0.4f, 0f, 1f)));
+            Assert.That(colors["MountainBase"], Is.EqualTo(new Color(0.5f, 0.5f, 0.5f, 1f)));
+            Assert.That(colors["MountainMid"], Is.EqualTo(new Color(0.6f, 0.6f, 0.6f, 1f)));
+            Assert.That(colors["MountainHigh"], Is.EqualTo(new Color(0.8f, 0.8f, 0.8f, 1f)));
+            Assert.That(colors["MountainPeak"], Is.EqualTo(Color.white));
+        }
     }
 }
