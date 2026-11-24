@@ -1,0 +1,17 @@
+{
+  "name": "Map.Unity.EditorTests",
+  "references": [
+    "Map.Unity.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Map.Core.dll",
+    "BaseClasses.dll"
+  ]
+}

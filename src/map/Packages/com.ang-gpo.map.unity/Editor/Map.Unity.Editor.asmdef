@@ -1,0 +1,11 @@
+{
+  "name": "Map.Unity.Editor",
+  "references": [
+    "Map.Unity.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "autoReferenced": true,
+  "noEngineReferences": false
+}
