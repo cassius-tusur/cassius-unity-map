@@ -2,9 +2,9 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-map_project=external/Map/src/map/Map.Core/Map.Core.csproj
+map_project=external/Map/src/Map.Core/Map.Core.csproj
 location_project=external/ProceduralGenerators/src/LocationGenerator/LocationGenerator.csproj
-plugins=src/map/Packages/com.ang-gpo.map.unity/Runtime/Plugins
+plugins=src/Packages/com.ang-gpo.map.unity/Runtime/Plugins
 
 if [[ ! -f "$map_project" || ! -f "$location_project" ]]; then
   echo 'Initialize submodules first: git submodule update --init --recursive' >&2
@@ -13,7 +13,7 @@ fi
 
 dotnet build "$map_project" --framework netstandard2.1 -m:1 -p:CopyLocalLockFileAssemblies=true
 dotnet build "$location_project" --framework netstandard2.1 -m:1 -p:CopyLocalLockFileAssemblies=true
-map_output=external/Map/src/map/Map.Core/bin/Debug/netstandard2.1
+map_output=external/Map/src/Map.Core/bin/Debug/netstandard2.1
 location_output=external/ProceduralGenerators/src/LocationGenerator/bin/Debug/netstandard2.1
 
 sources=()
