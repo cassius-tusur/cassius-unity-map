@@ -1,6 +1,6 @@
 [submodule "external/Map"]
 	path = external/Map
-	url = ../Map
+	url = ../cassius-map
 [submodule "external/ProceduralGenerators"]
 	path = external/ProceduralGenerators
-	url = ../ProceduralGenerators
+	url = ../cassius-procedural-generation
