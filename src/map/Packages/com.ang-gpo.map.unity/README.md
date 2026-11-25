@@ -10,22 +10,7 @@ Add this package through Package Manager using the project-local package path, t
 
 ## Refreshing the checked-in DLLs
 
-Whenever the Core model or serialization changes, restore the pinned MessagePack 3.1.12 graph, build every Unity-compatible target, and replace the package copies before opening the project:
-
-```bash
-dotnet restore src/map/Map.Core/Map.Core.csproj -p:TargetFramework=netstandard2.1 -m:1
-dotnet build src/base/BaseClasses/BaseClasses.csproj --framework netstandard2.1 -m:1 -p:LangVersion=latest
-dotnet build src/LocationGenerator/LocationGenerator.csproj --framework netstandard2.1 -m:1 -p:LangVersion=latest
-dotnet build src/map/Map.Core/Map.Core.csproj --framework netstandard2.1 -m:1 -p:LangVersion=latest
-cp src/map/Map.Core/bin/Debug/netstandard2.1/Map.Core.dll \
-  src/map/Packages/com.ang-gpo.map.unity/Runtime/Plugins/Map.Core.dll
-cp src/base/BaseClasses/bin/Debug/netstandard2.1/BaseClasses.dll \
-  src/map/Packages/com.ang-gpo.map.unity/Runtime/Plugins/BaseClasses.dll
-cp src/LocationGenerator/bin/Debug/netstandard2.1/LocationGenerator.dll \
-  src/map/Packages/com.ang-gpo.map.unity/Runtime/Plugins/LocationGenerator.dll
-```
-
-The package contains the complete matching `netstandard2.1` runtime closure. From the restored assets for the pinned MessagePack 3.1.12 graph, replace these exact package DLLs as one set: `MessagePack.dll`, `MessagePack.Annotations.dll`, `Microsoft.NET.StringTools.dll`, `System.Collections.Immutable.dll`, `Microsoft.Bcl.AsyncInterfaces.dll`, `System.Buffers.dll`, `System.IO.Pipelines.dll`, `System.Memory.dll`, `System.Numerics.Vectors.dll`, `System.Runtime.CompilerServices.Unsafe.dll`, `System.Text.Encodings.Web.dll`, `System.Text.Json.dll`, and `System.Threading.Tasks.Extensions.dll`, plus freshly built `BaseClasses.dll`, `LocationGenerator.dll`, and `Map.Core.dll`. The matching versions are recorded in `src/map/Map.Core/obj/project.assets.json` under `.NETStandard,Version=v2.1`; copy each entry's `runtime` asset, never a `ref` asset. Keep the package `.meta` files (and add one for a newly introduced DLL), and keep `LocationGenerator.dll` in `Map.Unity.Runtime.asmdef`'s `precompiledReferences`. Reopen Unity after the copies are replaced and resolve any compiler errors before running the smoke test.
+Initialize this repository’s submodules recursively and run `bash refresh-dependencies.sh` from the repository root. This builds the pinned Map and ProceduralGenerators sources and updates the packaged DLLs. Run the editor tests in a Unity project after refreshing.
 
 ## Inspector workflow, generation, and loading
 
