@@ -1,0 +1,6 @@
+[submodule "external/Map"]
+	path = external/Map
+	url = ../Map
+[submodule "external/ProceduralGenerators"]
+	path = external/ProceduralGenerators
+	url = ../ProceduralGenerators
