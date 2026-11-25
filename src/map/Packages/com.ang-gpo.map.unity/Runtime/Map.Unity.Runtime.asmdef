@@ -6,6 +6,7 @@
   "precompiledReferences": [
     "Map.Core.dll",
     "BaseClasses.dll",
+    "LocationGenerator.dll",
     "MessagePack.dll",
     "MessagePack.Annotations.dll",
     "Microsoft.NET.StringTools.dll",
